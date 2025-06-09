@@ -1,5 +1,8 @@
-package Lab3.game;
+package Lab3;
 
+import Lab3.game.Board;
+import Lab3.game.Player;
+import Lab3.game.Position;
 import Lab3.ui.Console;
 
 import java.util.Scanner;
