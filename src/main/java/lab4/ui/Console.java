@@ -1,8 +1,11 @@
 package lab4.ui;
 
+import com.diogonunes.jcolor.Attribute;
 import lab4.game.*;
 
 import java.util.Scanner;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 /**
  * Helper methods for doing console-based user interaction
@@ -10,7 +13,7 @@ import java.util.Scanner;
 public class Console {
 
     public static void println(String message) {
-        System.out.println(message);
+        System.out.println(colorize(message , Attribute.YELLOW_TEXT()));
     }
 
     /**
@@ -19,7 +22,8 @@ public class Console {
      * @return The user's response
      */
     public static String prompt(String promptMessage) {
-        System.out.print(promptMessage);
+
+        System.out.println(colorize(promptMessage, Attribute.BLUE_TEXT()));
         var scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
@@ -29,7 +33,9 @@ public class Console {
      * @param board A tictactoe game board
      */
     public static void showBoard(Board board) {
-        System.out.print(board);
+
+        System.out.println(colorize(board.toString(), Attribute.BRIGHT_WHITE_BACK(), Attribute.BLACK_TEXT()));
+
     }
 
     /**
@@ -46,7 +52,7 @@ public class Console {
         final String helpMessage = "Input must be in the format 'row column', e.g., '1 2' or 't m' for the top middle cell.";
 
         while ( true ) {
-            System.out.print(prompt);
+            System.out.println(colorize(prompt, Attribute.BRIGHT_MAGENTA_TEXT()));
             var input = scanner.nextLine().trim();
 
             if ( input.length() != 3 ) {
@@ -67,13 +73,13 @@ public class Console {
                 var pos = new Position(Row.from(parts[0]), Col.from(parts[1]));
 
                 if (board.isOccupiedAt(pos)) {
-                    System.out.println("That position is already taken.");
+                    System.out.println(colorize("That position is already taken.", Attribute.RED_TEXT()));
                     continue;
                 }
 
                 return pos;
             } catch ( IllegalArgumentException e ) {
-                System.out.println(helpMessage);
+                System.out.println(colorize(helpMessage, Attribute.BRIGHT_CYAN_TEXT()));
             }
         }
     }
