@@ -103,13 +103,13 @@ public class BoardTest {
 
     public void testBoardLayout() {
         board.placeX(topLeft);
-        board.placeX(middleMiddle);
+        board.placeO(middleMiddle);
         board.placeX(bottomRight);
 
-        String expected = """
-                X..
-                .X.
-                ..X""";
+        String expected =
+                "X..\n" +
+                        ".O.\n" +
+                        "..X\n";
         assertEquals(expected, board.toString());
     }
 
