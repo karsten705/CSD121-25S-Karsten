@@ -53,8 +53,7 @@ public class Console {
                 input = input.substring(1).toLowerCase(); // remove the '@' prefix
 
                 switch ( input ) {
-                    // E.g.
-                    // case "randy" -> { return new Randy(); }
+                    case "randy" -> { return new Randy(); }
                     default -> printAlert("TODO: Implement computer players");
                 }
             } else {
