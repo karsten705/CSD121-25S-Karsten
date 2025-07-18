@@ -16,7 +16,7 @@ public class Main {
                 - To play as a human, just enter a name
                 - To have the player played by the computer enter @ followed by one of the following names:
                     Randy
-                    ????SecondName????
+                    Omola
                 // TODO: Add the names of the computer players you have implemented here!
                 """);
         var player1 = Console.promptForPlayer(X);
