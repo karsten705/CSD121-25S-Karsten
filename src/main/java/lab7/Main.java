@@ -27,6 +27,18 @@ public class Main {
     }
 
     // TODO: implement the searchRecipes method
+    public static List<Recipe> searchRecipes(String searchTerm, DataService dataService) {
+        try {
+            var recipes = dataService.getRecipes(); // fetch all recipes and store it in a variable
+            String lowerSearch = searchTerm.toLowerCase(); // convert to lower-case
+            return recipes.stream().filter(recipe -> recipe.name().toLowerCase().contains(lowerSearch) ||
+                    recipe.description().toLowerCase().contains(lowerSearch)).toList();
+        }catch(Exception e ) {
+            logger.error("Error while searching recipes: " + e.getMessage());
+            logger.debug("Stack trace: " + Arrays.toString(e.getStackTrace()));
+            return List.of();
+        }
+    }
 
     public static void main(String[] args) {
         // Here, we INJECT a concrete implementation of the DataService interface
@@ -36,5 +48,8 @@ public class Main {
         quickRecipes.forEach(System.out::println);
 
         // TODO: use your searchRecipes method with a SqliteDataService object
+        List<Recipe> chickenRecipes = searchRecipes("cHickEn", new SqliteDataService());
+        System.out.println("Recipes including the keyword chicken:\n");
+        chickenRecipes.forEach(System.out::println);
     }
 }
